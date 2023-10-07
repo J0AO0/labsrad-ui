@@ -1,0 +1,70 @@
+<main>
+    <p-card styleClass="card-adjust">
+        <div class="mb-3">
+            <span class="title colorTitle">Cadastro de Paciente</span>
+        </div>
+        <div class="flex justify-content-start mb-2">
+            <button pButton type="button" class="p-button-primary" icon="pi pi-arrow-left" pTooltip="Voltar" routerLink="/convenios" ></button>
+        </div>
+        <form #formPaciente="ngForm" (ngSubmit)="salvar(formPaciente)">
+            <div class="grid flex flex-wrap">
+                <div class="col-12 md:col-6 lg:col-3 p-fluid">
+                    <span>Nome</span>
+                    <input type="text" [required]="true" name="nome" #nome="ngModel" [(ngModel)]="paciente.nomeP" pInputText 
+                    [pKeyFilter]="regex.string">
+                    <app-message [control]="nome" error="required" 
+                    text="Nome obrigatório !"></app-message>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3 p-fluid">
+                    <span>CPF</span>
+                        <p-inputMask placeholder="000.000.000-00" mask="999.999.999-99" name="cpf" #cpf="ngModel" 
+                        [(ngModel)]="paciente.cpf" [required]="true"  [pKeyFilter]="regex.number"  minlength="2"></p-inputMask>
+                        <app-message [control]="cpf" error="required" 
+                    text="CPF inválido !"></app-message>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3 p-fluid">
+                    <span>Telefone</span>
+                        <p-inputMask placeholder="(00) 00000-0000" mask="(99) 99999-9999" name="telefone" #telefone="ngModel" 
+                        [(ngModel)]="paciente.telefone" [required]="true"  [pKeyFilter]="regex.number"></p-inputMask>
+                        <app-message [control]="telefone" error="required" 
+                    text="Telefone inválido !"></app-message>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3 p-fluid">
+                    <span>Data de Nascimento</span>
+                    <p-calendar [(ngModel)]="paciente.dataNasc" [readonlyInput]="true" name="dataNasc" #dataNasc="ngModel" 
+                    [showIcon]="true" [required]="true"></p-calendar>
+                    <app-message [control]="dataNasc" error="required" 
+                    text="Data de Nascimento obrigatória !"></app-message>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3 p-fluid">
+                    <span>Genero</span>
+                    <p-dropdown [options]="pacientes" name="sexo" #sexo="ngModel" 
+                    [(ngModel)]="paciente.sexo" placeholder="Selecione gereno....." 
+                    [ngModelOptions]="{standalone: true}" optionLabel="sexo"></p-dropdown>
+                </div>
+            </div>
+            <div class="flex justify-content-center">
+                <div class="flex align-items-center justify-content-center">
+                    <h5>Status</h5>
+                </div>
+               </div>
+            <div class="flex justify-content-center">
+                <div class="flex align-items-center justify-content-center">
+                    <p-inputSwitch [(ngModel)]="paciente.status" name="status" 
+                    [ngModelOptions]="{standalone: true}"></p-inputSwitch>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-content-center mt-4">
+                <div class="col-12 md:col-6 lg:col-3">
+                    <button pButton type="submit" class="p-button-primary w-full" icon="pi pi-save" [disabled]="formPaciente.invalid || salvando " pTooltip="Salvar" label="Salvar"></button>
+                </div>
+            </div>
+            <div *ngIf="salvando" class="grid flex justify-content-center mt-4">
+                <p-progressSpinner [style]="{width: '50px', heigth: '50px'}" styleClass="custom-spinner" strokeWidth="8" animation=".5s"></p-progressSpinner>
+                <div class="grid col-12 justify-content-center">
+                    <h4>Salvando aguarde...</h4>
+                </div>
+            </div>
+        </form>
+    </p-card>
+</main>

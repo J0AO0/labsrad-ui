@@ -1,0 +1,67 @@
+<main>
+    <p-card styleClass="card-adjust">
+        <div class="mb-3">
+            <span class="title colorTitle">Cadastro de Patrimonio</span>
+        </div>
+        <div class="flex justify-content-start mb-2">
+            <button pButton type="button" class="p-button-primary" icon="pi pi-arrow-left" pTooltip="Voltar"
+                routerLink="/patrimonios"></button>
+        </div>
+        <form #formPatrimonio="ngForm" (ngSubmit)="salvar(formPatrimonio)">
+            <div class="grid flex flex-wrap">
+                <div class="col-12 md:col-6 lg:col-3 p-fluid">
+                    <span>Descrição</span>
+                    <input type="text" [required]="true" name="descricao" #descricao="ngModel"
+                        [(ngModel)]="patrimonio.descricao" pInputText [pKeyFilter]="regex.string">
+                    <app-message [control]="descricao" error="required" text="Descrição obrigatória !"></app-message>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3 p-fluid">
+                    <span>Data de Aquisição</span>
+                    <p-calendar [(ngModel)]="patrimonio.dataAq" [readonlyInput]="true" name="dataAq" #dataAq="ngModel"
+                        [showIcon]="true" [required]="true"></p-calendar>
+                    <app-message [control]="dataAq" error="required"
+                        text="Data de Nascimento obrigatória !"></app-message>
+                </div>
+                
+                <div class="col-12 md:col-6 lg:col-3 p-fluid">
+                    <span>Valor</span>
+                    <input type="text" [required]="true" name="valor" #valor="ngModel"
+                        [(ngModel)]="patrimonio.valor" pInputText [pKeyFilter]="regex.numberEVirgula"
+                        placeholder="00,0">
+                    <app-message [control]="valor" error="required" text="Valor obrigatório !"></app-message>
+                </div>
+
+                <div class="col-12 md:col-6 lg:col-3 p-fluid">
+                    <span>Empresa</span>
+                    <p-dropdown [options]="patrimonios" name="empresa" #empresa="ngModel"
+                        [(ngModel)]="patrimonio.empresa" placeholder="Selecione uma empresa...."
+                        [ngModelOptions]="{standalone: true}" optionLabel="empresa"></p-dropdown>
+                </div>
+            </div>
+            <div class="flex justify-content-center">
+                <div class="flex align-items-center justify-content-center">
+                    <h5>Status</h5>
+                </div>
+            </div>
+            <div class="flex justify-content-center">
+                <div class="flex align-items-center justify-content-center">
+                    <p-inputSwitch [(ngModel)]="patrimonio.status" name="status"
+                        [ngModelOptions]="{standalone: true}"></p-inputSwitch>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-content-center mt-4">
+                <div class="col-12 md:col-6 lg:col-3">
+                    <button pButton type="submit" class="p-button-primary w-full" icon="pi pi-save"
+                        [disabled]="formPatrimonio.invalid || salvando " pTooltip="Salvar" label="Salvar"></button>
+                </div>
+            </div>
+            <div *ngIf="salvando" class="grid flex justify-content-center mt-4">
+                <p-progressSpinner [style]="{width: '50px', heigth: '50px'}" styleClass="custom-spinner" strokeWidth="8"
+                    animation=".5s"></p-progressSpinner>
+                <div class="grid col-12 justify-content-center">
+                    <h4>Salvando aguarde...</h4>
+                </div>
+            </div>
+        </form>
+    </p-card>
+</main>
