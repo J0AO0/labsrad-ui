@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Patrimonio } from 'src/app/core/models/patrimonio.model';
+import { Patrimonios } from 'src/app/core/models/patrimonios.model';
 import { Regex } from 'src/app/core/validators/regex';
 
 
@@ -13,20 +13,20 @@ export class PatrimonioCadastroComponent implements OnInit {
 
    regex = new Regex();
    salvando: boolean = false;
-   patrimonio = new Patrimonio();
+   patrimonio = new Patrimonios();
    nome: string;
    idPatrimonio: number;
-   patrimonios: Patrimonio[] | undefined;
+   patrimonios: Patrimonios[] | undefined;
 
   constructor(){ }
 
   ngOnInit(){
-      this.patrimonios = [
-        {empresa: "empresa 1"},
-        {empresa: "empresa 2"},
-        {empresa: "empresa 3"},
-        {empresa: "empresa 4"}
-      ]
+      // this.patrimonios = [
+      //   {empresa: "empresa 1"},
+      //   {empresa: "empresa 2"},
+      //   {empresa: "empresa 3"},
+      //   {empresa: "empresa 4"}
+      // ]
   }
 
   salvar(form: NgForm){

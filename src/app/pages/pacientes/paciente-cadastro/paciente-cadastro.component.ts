@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PacientesService } from '../pacientes.service';
 import { Regex } from 'src/app/core/validators/regex';
 import { NgForm } from '@angular/forms';
-import { Paciente } from 'src/app/core/models/paciente.model';
+import { Pacientes } from 'src/app/core/models/pacientes.model';
 
 @Component({
   selector: 'app-paciente-cadastro',
@@ -12,10 +12,10 @@ import { Paciente } from 'src/app/core/models/paciente.model';
 export class PacienteCadastroComponent implements OnInit{
    regex = new Regex();
    salvando: boolean = false;
-   paciente = new Paciente();
+   paciente = new Pacientes();
    nome: string;
    idPaciente: number;
-   pacientes: Paciente[] | undefined;
+   pacientes: Pacientes[] | undefined;
 
    constructor(
     private paciService: PacientesService
@@ -24,12 +24,12 @@ export class PacienteCadastroComponent implements OnInit{
    ngOnInit() {
      this.paciente.status = true;
 
-    this.pacientes = [
-      {sexo:'Masculino'},
-      {sexo:'Feminino'},
-      {sexo:'Megazord'},
+    // this.pacientes = [
+    //   {sexo:'Masculino'},
+    //   {sexo:'Feminino'},
+    //   {sexo:'Megazord'},
 
-    ] 
+    // ] 
        
    }
 

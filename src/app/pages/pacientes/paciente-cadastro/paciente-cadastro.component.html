@@ -10,7 +10,7 @@
             <div class="grid flex flex-wrap">
                 <div class="col-12 md:col-6 lg:col-3 p-fluid">
                     <span>Nome</span>
-                    <input type="text" [required]="true" name="nome" #nome="ngModel" [(ngModel)]="paciente.nomeP" pInputText 
+                    <input type="text" [required]="true" name="nome" #nome="ngModel" [(ngModel)]="paciente.nome" pInputText 
                     [pKeyFilter]="regex.string">
                     <app-message [control]="nome" error="required" 
                     text="Nome obrigatório !"></app-message>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-12 md:col-6 lg:col-3 p-fluid">
                     <span>Data de Nascimento</span>
-                    <p-calendar [(ngModel)]="paciente.dataNasc" [readonlyInput]="true" name="dataNasc" #dataNasc="ngModel" 
+                    <p-calendar [(ngModel)]="paciente.datanasc" [readonlyInput]="true" name="dataNasc" #dataNasc="ngModel" 
                     [showIcon]="true" [required]="true"></p-calendar>
                     <app-message [control]="dataNasc" error="required" 
                     text="Data de Nascimento obrigatória !"></app-message>

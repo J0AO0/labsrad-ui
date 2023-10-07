@@ -16,6 +16,7 @@ import { PrimeNGModule } from './primeng.module';
     HttpClientModule,
     AppRoutingModule,
     PrimeNGModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

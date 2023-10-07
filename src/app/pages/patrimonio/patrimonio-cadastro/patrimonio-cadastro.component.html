@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-12 md:col-6 lg:col-3 p-fluid">
                     <span>Data de Aquisição</span>
-                    <p-calendar [(ngModel)]="patrimonio.dataAq" [readonlyInput]="true" name="dataAq" #dataAq="ngModel"
+                    <p-calendar [(ngModel)]="patrimonio.dataaquisicao" [readonlyInput]="true" name="dataAq" #dataAq="ngModel"
                         [showIcon]="true" [required]="true"></p-calendar>
                     <app-message [control]="dataAq" error="required"
                         text="Data de Nascimento obrigatória !"></app-message>
@@ -34,7 +34,7 @@
                 <div class="col-12 md:col-6 lg:col-3 p-fluid">
                     <span>Empresa</span>
                     <p-dropdown [options]="patrimonios" name="empresa" #empresa="ngModel"
-                        [(ngModel)]="patrimonio.empresa" placeholder="Selecione uma empresa...."
+                        [(ngModel)]="patrimonio.empresas" placeholder="Selecione uma empresa...."
                         [ngModelOptions]="{standalone: true}" optionLabel="empresa"></p-dropdown>
                 </div>
             </div>
