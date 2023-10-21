@@ -3,25 +3,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment-timezone';
 import { firstValueFrom } from 'rxjs';
-import { Convenios } from 'src/app/core/models/convenios.model';
+import { Atendimentos } from 'src/app/core/models/atendimentos.model';
+
 import { environment } from 'src/enviroment/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConveniosService {
+export class AtendimentosService {
 
-  convenioUrl: string;
+  atendimentosUrl: string;
   constructor(
     private http: HttpClient
   ) {
-    this.convenioUrl = `${environment.apiUrl}/convenios`
+    this.atendimentosUrl = `${environment.apiUrl}/atendimentoss`
   }
 
   async listar(): Promise<any> {
     const res = await firstValueFrom(
-      this.http.get(`${this.convenioUrl}`));
+      this.http.get(`${this.atendimentosUrl}`));
     const obj = res as any[];
     this.converterStringDate(obj);
     return obj;
@@ -35,25 +36,25 @@ export class ConveniosService {
     })
   }
 
-  adicionar(convenio: Convenios): Promise<Convenios> {
-    return firstValueFrom(this.http.post<Convenios>(this.convenioUrl, convenio));
+  adicionar(atendimentos: Atendimentos): Promise<Atendimentos> {
+    return firstValueFrom(this.http.post<Atendimentos>(this.atendimentosUrl, atendimentos));
   }
 
-  async atualizar(convenio: Convenios): Promise<Convenios> {
-    const res = await firstValueFrom(this.http.put<Convenios>(`${this.convenioUrl}/${convenio.id}`, convenio));
-    return res as Convenios;
+  async atualizar(atendimento: Atendimentos): Promise<Atendimentos> {
+    const res = await firstValueFrom(this.http.put<Atendimentos>(`${this.atendimentosUrl}/${atendimento.id}`, atendimento));
+    return res as Atendimentos;
   }
 
-  async buscarPorId(id: number): Promise<Convenios>{
+  async buscarPorId(id: number): Promise<Atendimentos>{
     const res = await firstValueFrom(
-      this.http.get(`${this.convenioUrl}/${id}`));
-    return res as Convenios;
+      this.http.get(`${this.atendimentosUrl}/${id}`));
+    return res as Atendimentos;
     
   }
 
-  async excluir(id: number): Promise<Convenios>{
-    const response = await firstValueFrom(this.http.delete(`${this.convenioUrl}/${id}`));
-    return response as Convenios;
+  async excluir(id: number): Promise<Atendimentos>{
+    const response = await firstValueFrom(this.http.delete(`${this.atendimentosUrl}/${id}`));
+    return response as Atendimentos;
   }
 
   async mudarStatus(id: number, status:boolean){
@@ -62,14 +63,14 @@ export class ConveniosService {
         'application/json'
     );
     await firstValueFrom(
-      this.http.put(`${this.convenioUrl}/${id}/status`, status, { headers })
+      this.http.put(`${this.atendimentosUrl}/${id}/status`, status, { headers })
     );
     return null;
   }
 
   async AlternarLista(valor: string): Promise<any>{
     const response = await firstValueFrom(
-      this.http.get(`${this.convenioUrl}${valor}`)
+      this.http.get(`${this.atendimentosUrl}${valor}`)
     );
     return response
   }
@@ -77,7 +78,7 @@ export class ConveniosService {
 
   async listarExames(id: number): Promise<any> {
     const res = await firstValueFrom(
-      this.http.get(`${this.convenioUrl}/conv/${id}`));
+      this.http.get(`${this.atendimentosUrl}/atend/${id}`));
     return res;
   }
 }
